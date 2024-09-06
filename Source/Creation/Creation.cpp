@@ -92,7 +92,7 @@ Result FinalizeDeviceCreation(const T& deviceCreationDesc, DeviceBase& deviceImp
     if (deviceCreationDesc.enableNRIValidation) {
         Device* deviceVal = (Device*)CreateDeviceValidation(deviceCreationDesc, deviceImpl);
         if (deviceVal == nullptr) {
-            nriDestroyDevice((Device&)deviceImpl);
+            ::nriDestroyDevice((Device&)deviceImpl);
             return Result::FAILURE;
         }
 

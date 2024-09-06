@@ -113,7 +113,7 @@ inline void Destroy(T* object) {
 
 #define REPORT_ERROR_ON_BAD_STATUS(deviceBase, expression) \
     if ((expression) != 0) \
-        (deviceBase)->ReportMessage(nri::Message::ERROR, __FILE__, __LINE__, "%s: " NRI_STRINGIFY(expression) " failed!", __FUNCTION__)
+    (deviceBase)->ReportMessage(nri::Message::ERROR, __FILE__, __LINE__, "%s: " NRI_STRINGIFY(expression) " failed!", __FUNCTION__)
 
 #define CHECK(condition, message) assert((condition) && message)
 
@@ -135,9 +135,14 @@ constexpr uint64_t MsToUs(uint32_t x) {
 constexpr void ReturnVoid() {
 }
 
+#pragma warning(push)
+#pragma warning(disable: 4100)
+
 template <typename... Args>
-constexpr void MaybeUnused([[maybe_unused]] const Args&... args) {
+constexpr void MaybeUnused(const Args&... args) {
 }
+
+#pragma warning(pop)
 
 // Format conversion
 struct DxgiFormat {

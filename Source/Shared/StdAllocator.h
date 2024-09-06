@@ -6,9 +6,14 @@
 #include <unordered_map>
 #include <vector>
 
+#pragma warning(push)
+#pragma warning(disable: 4100)
+
 template <typename T>
-void StdAllocator_MaybeUnused([[maybe_unused]] const T& arg) {
+void StdAllocator_MaybeUnused(const T& arg) {
 }
+
+#pragma warning(pop)
 
 #if defined(_WIN32)
 #    include <malloc.h>

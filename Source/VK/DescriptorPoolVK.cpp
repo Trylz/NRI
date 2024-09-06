@@ -8,6 +8,9 @@
 
 using namespace nri;
 
+#pragma warning(push)
+#pragma warning(disable: 4834)
+
 DescriptorPoolVK::~DescriptorPoolVK() {
     const auto& allocator = m_Device.GetStdAllocator().GetInterface();
     for (size_t i = 0; i < m_AllocatedSets.size(); i++) {
@@ -20,6 +23,8 @@ DescriptorPoolVK::~DescriptorPoolVK() {
         vk.DestroyDescriptorPool(m_Device, m_Handle, m_Device.GetAllocationCallbacks());
     }
 }
+
+#pragma warning(pop)
 
 inline void AddDescriptorPoolSize(VkDescriptorPoolSize* poolSizeArray, uint32_t& poolSizeArraySize, VkDescriptorType type, uint32_t descriptorCount) {
     if (descriptorCount == 0)
